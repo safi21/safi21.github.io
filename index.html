@@ -3,14 +3,20 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Safi Ahmed</title>
   <style>
     /* Smooth scroll */
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     /* Reset */
-    * { margin: 0; padding: 0; box-sizing: border-box; } 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       font-family: Arial, sans-serif;
@@ -26,16 +32,18 @@
 
     /* Light, readable, sticky navbar */
     nav {
-      background-color: #ffffffee; /* light shaded */
+      background-color: #ffffffee;
+      /* light shaded */
       color: #000;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 20px;           /* vertical + small base horizontal */
+      padding: 15px 20px;
+      /* vertical + small base horizontal */
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
 
     .logo {
@@ -57,12 +65,21 @@
       transition: color 0.3s ease;
     }
 
-    .nav-links li a:hover { color: #00bfff; }
+    .nav-links li a:hover {
+      color: #00bfff;
+    }
 
-    .menu-toggle { display: none; font-size: 1.8rem; cursor: pointer; }
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
 
     /* Sections */
-    section { padding: 20px 0; scroll-margin-top: 80px; }
+    section {
+      padding: 20px 0;
+      scroll-margin-top: 80px;
+    }
 
     /* Home Section */
     #home {
@@ -78,43 +95,101 @@
       border-radius: 50%;
     }
 
-    .left-column { text-align: center; }
+    .left-column {
+      text-align: center;
+    }
 
-    .left-column p { margin: 8px 0; font-size: 1rem; }
+    .left-column p {
+      margin: 8px 0;
+      font-size: 1rem;
+    }
 
-    .left-column .email { color: black; font-weight: normal; }
+    .left-column .email {
+      color: black;
+      font-weight: normal;
+    }
 
-    .left-column a { color: #0051ffa5; text-decoration: none; }
-    .left-column a:hover { text-decoration: underline; }
+    .left-column a {
+      color: #0051ffa5;
+      text-decoration: none;
+    }
 
-    .right-column { text-align: justify; font-size: 1.1rem; }
+    .left-column a:hover {
+      text-decoration: underline;
+    }
+
+    .right-column {
+      text-align: justify;
+      font-size: 1.1rem;
+    }
 
     /* Research Statement */
-    #research-statement { display: flex; justify-content: center; text-align: justify; }
-    #research-statement h2 { font-size: 1.8rem; margin-bottom: 20px; }
+    #research-statement {
+      display: flex;
+      justify-content: center;
+      text-align: justify;
+    }
+
+    #research-statement h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
 
     /* Education */
     #education {
-      display: grid;
-      grid-template-columns: 3fr 2fr;
-      gap: 20px;
-      align-items: center;
       text-align: justify;
     }
-    .edu-left { text-align: left; }
-    .edu-right { text-align: right; color: #555; }
 
-    /* Experience */
-    #experience { text-align: justify; }
-    #experience h2 { font-size: 1.8rem; margin-bottom: 20px; text-align: left; }
-    .experience-row {
+    #education h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .edu-row {
       display: grid;
-      grid-template-columns: 3fr 1fr; /* details : time = 3:1 */
+      grid-template-columns: 3fr 1fr;
+      /* details : time = 3:1 */
       gap: 20px;
       margin-bottom: 15px;
     }
-    .exp-left { text-align: left; }
-    .exp-right { text-align: right; color: #555; }
+
+    .edu-left {
+      text-align: left;
+    }
+
+    .edu-right {
+      text-align: right;
+      color: #555;
+    }
+
+    /* Experience */
+    #experience {
+      text-align: justify;
+    }
+
+    #experience h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .experience-row {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      /* details : time = 3:1 */
+      gap: 20px;
+      margin-bottom: 15px;
+    }
+
+    .exp-left {
+      text-align: left;
+    }
+
+    .exp-right {
+      text-align: right;
+      color: #555;
+    }
 
     /* Publications */
     #publications {
@@ -123,21 +198,50 @@
       justify-content: center;
       text-align: justify;
     }
-    #publications h2 { font-size: 1.8rem; margin-bottom: 20px; text-align: left; }
-    #publications ol { padding-left: 20px; }
-    #publications li { margin-bottom: 15px; line-height: 1.5; }
+
+    #publications h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    #publications ol {
+      padding-left: 20px;
+    }
+
+    #publications li {
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
 
     /* Contact */
-    #contact { text-align: justify; }
-    #contact h2 { font-size: 1.8rem; margin-bottom: 20px; text-align: left; }
-    .contact-left { font-size: 1rem; }
+    #contact {
+      text-align: justify;
+    }
+
+    #contact h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .contact-left {
+      font-size: 1rem;
+    }
 
     /* Link styles (global) */
-    #publications a, #experience a, .contact-left a {
+    #publications a,
+    #experience a,
+    .contact-left a {
       color: #0051ffa5;
       text-decoration: none;
     }
-    #publications a:hover, #experience a:hover, .contact-left a:hover { text-decoration: underline; }
+
+    #publications a:hover,
+    #experience a:hover,
+    .contact-left a:hover {
+      text-decoration: underline;
+    }
 
     /* Back to Top (unchanged design) */
     #backToTop {
@@ -151,24 +255,39 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
       opacity: 0.8;
       transition: opacity 0.3s, transform 0.3s;
       z-index: 1000;
     }
-    #backToTop:hover { opacity: 1; transform: translateY(-2px); }
+
+    #backToTop:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
 
     /* --- Responsiveness --- */
 
     /* Step down side padding for smaller screens */
     @media (max-width: 1200px) {
-      .container { padding-left: 200px; padding-right: 200px; }
+      .container {
+        padding-left: 200px;
+        padding-right: 200px;
+      }
     }
+
     @media (max-width: 992px) {
-      .container { padding-left: 100px; padding-right: 100px; }
+      .container {
+        padding-left: 100px;
+        padding-right: 100px;
+      }
     }
+
     @media (max-width: 768px) {
-      .container { padding-left: 20px; padding-right: 20px; }
+      .container {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
 
       .nav-links {
         display: none;
@@ -176,28 +295,59 @@
         position: absolute;
         top: 60px;
         right: 0;
-        background-color: rgba(255,255,255,0.97); /* light, readable */
+        background-color: rgba(255, 255, 255, 0.97);
+        /* light, readable */
         width: 220px;
         padding: 20px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
       }
-      .nav-links.active { display: flex; }
-      .menu-toggle { display: block; }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
     }
 
     @media (max-width: 1024px) {
-      #home, #education, .experience-row {
+
+      #home,
+      #education,
+      .experience-row {
         grid-template-columns: 1fr;
         text-align: center;
       }
-      .edu-right, .exp-right { text-align: left; margin-top: 5px; }
-      #home img { max-width: 200px; }
+
+      .edu-right,
+      .exp-right {
+        text-align: left;
+        margin-top: 5px;
+      }
+
+      #home img {
+        max-width: 200px;
+      }
     }
 
     @media (max-width: 480px) {
-      #home img { max-width: 120px; }
-      h2 { font-size: 1.4rem; }
-      .right-column, .edu-left, .edu-right, .exp-left, .exp-right, #contact p { font-size: 0.9rem; }
+      #home img {
+        max-width: 120px;
+      }
+
+      h2 {
+        font-size: 1.4rem;
+      }
+
+      .right-column,
+      .edu-left,
+      .edu-right,
+      .exp-left,
+      .exp-right,
+      #contact p {
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
@@ -232,7 +382,13 @@
     <div class="right-column">
       <h2>Safi Ahmed</h2>
       <p>
-        I am an incoming PhD student in Electronic Engineering at Kwangwoon University, Seoul, Korea, with a strong background in Textile Engineering. I earned my Bachelor of Science in Fabric Engineering from Bangladesh University of Textiles (BUTEX) in November 2024. My research interests focus on smart textiles, wearable sensors, and flexible electronics, with particular expertise in the development of textile-based resistive and capacitive pressure, touch, and strain sensors for human–machine interaction and healthcare applications. I bring experience in interdisciplinary collaboration and a dedication to translating research concepts into practical, impactful innovations.
+        I am an incoming PhD student in Electronic Engineering at Kwangwoon University, Seoul, Korea, with a strong
+        background in Textile Engineering. I earned my Bachelor of Science in Fabric Engineering from Bangladesh
+        University of Textiles (BUTEX) in November 2024. My research interests focus on smart textiles, wearable
+        sensors, and flexible electronics, with particular expertise in the development of textile-based resistive and
+        capacitive pressure, touch, and strain sensors for human–machine interaction and healthcare applications. I
+        bring experience in interdisciplinary collaboration and a dedication to translating research concepts into
+        practical, impactful innovations.
       </p>
     </div>
   </section>
@@ -242,25 +398,33 @@
     <div class="research-statement">
       <h2>Research Statement</h2>
       <p>
-        My research interests include Smart Textiles, Flexible Electronics, development of Wearable Sensors, and Bioelectronics. I am also interested in Internet of Things and Machine Learning. My goal is to develop smart flexible sensors that can monitor human motion and vital body signals by leveraging Machine Learning.
+        My research interests include Smart Textiles, Flexible Electronics, development of Wearable Sensors, and
+        Bioelectronics. I am also interested in Internet of Things and Machine Learning. My goal is to develop smart
+        flexible sensors that can monitor human motion and vital body signals by leveraging Machine Learning.
       </p>
     </div>
   </section>
 
   <!-- Education -->
-  <section id="education" class="container">
-    <div class="edu-left">
-      <h2>Education</h2>
-      <b>Kwangwoon University</b> <br />
-      <p style="font-size: 14px;">MS Combined PhD in Electronic Engineering</p>
-    </div>
-    <div class="edu-right"><i>Seoul, South Korea <br />Starting in September 2025</i></div>
 
-    <div class="edu-left">
-      <b>Bangladesh University of Textiles</b> <br />
-      <p style="font-size: 14px;">Bachelor of Science in Fabric Engineering</p>
+  <section id="education" class="container">
+    <h2>Education</h2>
+
+    <div class="edu-row">
+      <div class="edu-left">
+        <b>Kwangwoon University</b> <br />
+        <p style="font-size: 14px;">MS Combined PhD in Electronic Engineering</p>
+      </div>
+      <div class="edu-right"><i>Seoul, South Korea <br />Starting in September 2025</i></div>
     </div>
-    <div class="edu-right"><i>Dhaka, Bangladesh <br />March 2019 - November 2024</i></div>
+
+    <div class="edu-row">
+      <div class="edu-left">
+        <b>Bangladesh University of Textiles</b> <br />
+        <p style="font-size: 14px;">Bachelor of Science in Fabric Engineering</p>
+      </div>
+      <div class="edu-right"><i>Dhaka, Bangladesh <br />March 2019 - November 2024</i></div>
+    </div>
   </section>
 
   <!-- Experience -->
@@ -280,7 +444,8 @@
     <div class="experience-row">
       <div class="exp-left">
         <b>Research Intern</b><br />
-        Access Computing Summer Program (<a href="https://mp.weixin.qq.com/s/AVSiif6D_Yl8z-a9xDghQg" target="_blank"><i>ACSP</i></a>) 2024 <br />
+        Access Computing Summer Program (<a href="https://mp.weixin.qq.com/s/AVSiif6D_Yl8z-a9xDghQg"
+          target="_blank"><i>ACSP</i></a>) 2024 <br />
         Mentor: <a href="https://yyueluo.com/" target="_blank">Prof. Yiyue Luo</a> (University of Washington) <br />
         Project: Design and Fabrication Toolkit for Ubiquitous Tactile Interface
       </div>
@@ -301,9 +466,16 @@
     <div class="pub-column">
       <h2>Publications</h2>
       <ol>
-        <li><b>S. Ahmed</b>, Md. M. Hosen*, A. A. Saif, M. T. A. Khandaker, “Digital Machine Knitted Resistive Strain Sensor for Wireless Human Motion Monitoring,” <i><b>Status: Under Review</b></i>.</li>
-        <li>Md. M. Hosen*, <b>S. Ahmed</b>, “Seamless Integration of Touch Sensing Smart Textiles through Computerized Machine Knitting,” <i>Journal of Engineered Fibers and Fabrics</i>, Mar. 2025, doi: <a href="https://journals.sagepub.com/doi/10.1177/15589250251331051" target="_blank">10.1177/15589250251331051</a>.</li>
-        <li>Md. M. Hosen*, A. Ferdous, and <b>S. Ahmed</b>, “Easily scalable and highly flexible machine knitted resistive pressure sensor for smart textile applications,” <i>Journal of Industrial Textiles</i>, vol. 54, Aug. 2024, doi: <a href="https://journals.sagepub.com/doi/10.1177/15280837241279454" target="_blank">10.1177/15280837241279454</a>.</li>
+        <li><b>S. Ahmed</b>, Md. M. Hosen*, A. A. Saif, M. T. A. Khandaker, “Digital Machine Knitted Resistive Strain
+          Sensor for Wireless Human Motion Monitoring,” <i><b>Status: Under Review</b></i>.</li>
+        <li>Md. M. Hosen*, <b>S. Ahmed</b>, “Seamless Integration of Touch Sensing Smart Textiles through Computerized
+          Machine Knitting,” <i>Journal of Engineered Fibers and Fabrics</i>, Mar. 2025, doi: <a
+            href="https://journals.sagepub.com/doi/10.1177/15589250251331051"
+            target="_blank">10.1177/15589250251331051</a>.</li>
+        <li>Md. M. Hosen*, A. Ferdous, and <b>S. Ahmed</b>, “Easily scalable and highly flexible machine knitted
+          resistive pressure sensor for smart textile applications,” <i>Journal of Industrial Textiles</i>, vol. 54,
+          Aug. 2024, doi: <a href="https://journals.sagepub.com/doi/10.1177/15280837241279454"
+            target="_blank">10.1177/15280837241279454</a>.</li>
       </ol>
     </div>
   </section>
@@ -333,5 +505,6 @@
   <!-- Back to Top Button (unchanged) -->
   <button id="backToTop" onclick="scrollToTop()">↑ Top</button>
 </body>
+
 </html>
 <!--Final Commit-->
