@@ -197,9 +197,6 @@
 
     /* Publications */
     #publications {
-      background-color: white;
-      display: flex;
-      justify-content: center;
       text-align: justify;
     }
 
@@ -209,13 +206,30 @@
       text-align: left;
     }
 
-    #publications ol {
-      padding-left: 20px;
+    .pub-row {
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      /* details : time = 3:1 */
+      gap: 20px;
+      margin-bottom: 15px;
     }
 
-    #publications li {
-      margin-bottom: 15px;
-      line-height: 1.5;
+    .pub-left img {
+      width: 100%;
+      height: auto;
+      max-width: 90%;
+      display: block;
+      margin: 0 auto;
+      /* centers image */
+    }
+
+    .pub-left {
+      text-align: left;
+    }
+
+    .pub-right {
+      text-align: justify;
+      color: #555;
     }
 
     /* Contact */
@@ -420,6 +434,51 @@
         margin-top: 2px;
       }
     }
+    /* Publication Section Media Query */
+    @media (max-width: 1024px) {
+      .pub-row {
+        grid-template-columns: 1fr 2fr;
+        /* give text more room */
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .pub-row {
+        grid-template-columns: 1fr;
+        /* stack image above text */
+        text-align: center;
+      }
+
+     .pub-left img {
+    max-width: 90%;  /* make it almost as wide as the screen */
+    display: block;
+    margin: 0 auto;  /* center it */
+  }
+
+      .pub-right {
+        text-align: left;
+        /* text aligned left under image */
+        font-size: 0.95rem;
+      }
+    }
+
+    /* Extra small */
+    @media (max-width: 480px) {
+      .pub-left img {
+    max-width: 90%;  /* make it almost as wide as the screen */
+    display: block;
+    margin: 0 auto;  /* center it */
+  }
+
+      #publications h2 {
+        font-size: 1.4rem;
+      }
+
+      .pub-right {
+        font-size: 0.85rem;
+      }
+    }
   </style>
 </head>
 
@@ -534,20 +593,42 @@
 
   <!-- Publications -->
   <section id="publications" class="container">
-    <div class="pub-column">
-      <h2>Publications</h2>
-      <ol>
-        <li><b>S. Ahmed</b>, Md. M. Hosen*, A. A. Saif, M. T. A. Khandaker, “Digital Machine Knitted Resistive Strain
-          Sensor for Wireless Human Motion Monitoring,” <i><b>Status: Under Review</b></i>.</li>
-        <li>Md. M. Hosen*, <b>S. Ahmed</b>, “Seamless Integration of Touch Sensing Smart Textiles through Computerized
-          Machine Knitting,” <i>Journal of Engineered Fibers and Fabrics</i>, Mar. 2025, doi: <a
-            href="https://journals.sagepub.com/doi/10.1177/15589250251331051"
-            target="_blank">10.1177/15589250251331051</a>.</li>
-        <li>Md. M. Hosen*, A. Ferdous, and <b>S. Ahmed</b>, “Easily scalable and highly flexible machine knitted
-          resistive pressure sensor for smart textile applications,” <i>Journal of Industrial Textiles</i>, vol. 54,
-          Aug. 2024, doi: <a href="https://journals.sagepub.com/doi/10.1177/15280837241279454"
-            target="_blank">10.1177/15280837241279454</a>.</li>
-      </ol>
+    <h2>Publications</h2>
+    <div class="pub-row">
+      <div class="pub-left">
+        <img src="Paper_1.png" alt="First Paper" />
+      </div>
+      <div class="pub-right">
+        <b>Safi Ahmed</b>, Md. Mohaddesh Hosen*, Abdullah Al Saif, Md. Tanvir Ahmed Khandaker. <br> <b>Digital Machine
+          Knitted Resistive Strain Sensor
+          for Wireless Human Motion Monitoring</b>. <i>(Under Review)</i>.
+      </div>
+    </div>
+
+    <div class="pub-row">
+      <div class="pub-left">
+        <img src="Paper_2.png" alt="Second Paper">
+      </div>
+      <div class="pub-right">
+        Md. Mohaddesh Hosen*, <b>Safi Ahmed</b>. <br>
+        <b>Seamless Integration of Touch Sensing Smart Textiles through Computerized
+          Machine Knitting</b> <br>
+        <i>Journal of Engineered Fibers and Fabrics</i>, Mar. 2025. <a
+          href="https://journals.sagepub.com/doi/10.1177/15589250251331051" target="_blank">[Paper]</a>
+      </div>
+    </div>
+
+    <div class="pub-row">
+      <div class="pub-left">
+        <img src="Paper_3.png" alt="Third Paper">
+      </div>
+      <div class="pub-right">
+        Md. Mohaddesh Hosen*, Ahmadul Ferdous, and <b>Safi Ahmed</b> <br>
+        <b>Easily scalable and highly flexible machine knitted
+          resistive pressure sensor for smart textile applications</b><br>
+        <i>Journal of Industrial Textiles</i>, vol. 54,
+        Aug. 2024. <a href="https://journals.sagepub.com/doi/10.1177/15280837241279454" target="_blank">[Paper]</a>
+      </div>
     </div>
   </section>
 
