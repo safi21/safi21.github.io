@@ -8,6 +8,8 @@ html { scroll-behavior: smooth; }
   --elev:0 8px 24px rgba(9,12,20,.08); --shadow-sm:0 2px 6px rgba(0,0,0,.06);
   --radius:16px; --radius-sm:12px;
   --container-max:1100px; --container-pad:40px;
+  --nav-pad-y: 12px;   /* desired inherent navbar vertical padding */
+  --nav-pad-x: 28px;   /* desired horizontal padding */
 }
 :root[data-theme="dark"]{
   --bg:#0b0c10; --card:#111319; --text:#fff; --muted:#d0d3db;
@@ -26,18 +28,39 @@ body{
   transition: background-color .3s, color .3s, background .3s;
 }
 .container{
-  width:100%; max-width:var(--container-max); margin:0 auto;
-  padding:0 var(--container-pad);
+  width:100%;
+  max-width:var(--container-max);
+  margin:0 auto;
+  padding:0 var(--container-pad);  /* this was clobbering nav’s top/bottom */
 }
 
 /* ===== Navbar ===== */
-nav{
-  position: sticky; top:0; z-index:1000;
-  display:flex; align-items:center; gap:12px; justify-content:flex-start;
-  padding:12px 20px;
+nav {
+  width: 100%;
+  max-width: none;
+  padding: 22px 28px;   /* ← increase vertical (22px) + horizontal (28px) */
+  margin: 0;
+  box-sizing: border-box;
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: flex-start;
+
   background: color-mix(in oklab, var(--card) 80%, transparent);
   backdrop-filter: blur(8px);
-  border-bottom:1px solid var(--ring); box-shadow:var(--shadow-sm);
+  border-bottom: 1px solid var(--ring);
+  box-shadow: var(--shadow-sm);
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+  overflow: hidden;  /* ensures blur + background clip correctly */
+}
+nav.container{
+  padding: var(--nav-pad-y) var(--nav-pad-x);
 }
 
 .logo{ font-size:1.2rem; font-weight:800; letter-spacing:.3px; order:0; }
@@ -162,6 +185,11 @@ h2{ font-size:clamp(1.4rem,1.2rem + .6vw,1.9rem); margin-bottom:16px; letter-spa
   .menu-toggle{ display:block; } /* sits immediately to the right of theme-toggle */
 
   nav{ padding-right:12px; }
+  nav.container{
+    padding-top: 2px;
+    padding-bottom: 2px;
+    /* keep your existing padding-right tweak if desired */
+  }
 
   #home{ grid-template-columns:1fr; text-align:center; }
   #home img{ max-width:200px; }
