@@ -283,3 +283,47 @@ h2{
   #publications h2{ font-size: 1.25rem; }
   .pub-right{ font-size: .88rem; }
 }
+/* === Mobile left alignment for Education & Experience === */
+@media (max-width: 768px) {
+  /* Keep one-column stack but align everything to the left */
+  #education,
+  #experience { 
+    text-align: left;
+  }
+
+  #education .edu-row,
+  #experience .experience-row {
+    grid-template-columns: 1fr;   /* still single column on mobile */
+    row-gap: 6px;
+  }
+
+  /* Force left alignment for both sides */
+  #education .edu-left,
+  #education .edu-right,
+  #experience .exp-left,
+  #experience .exp-right {
+    text-align: left;
+  }
+
+  /* Remove the fixed width on the right blocks for mobile */
+  #education .edu-right,
+  #experience .exp-right {
+    width: auto;
+    margin-top: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Keep the same behavior on very small phones */
+  #education,
+  #experience { 
+    text-align: left;
+  }
+
+  #education .edu-left,
+  #education .edu-right,
+  #experience .exp-left,
+  #experience .exp-right {
+    text-align: left;
+  }
+}
