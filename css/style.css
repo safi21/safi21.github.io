@@ -620,4 +620,10 @@ h3 {
   .publication-card p {
     text-align: left;
   }
+  
+  .hero-content p,
+  .text-block p {
+    text-align: justify;
+    text-justify: inter-word;
+  }
 }
