@@ -1,263 +1,396 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Safi Ahmed</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav-shell">
+        <a href="#home" class="brand">Safi Ahmed</a>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#research-statement">Research</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WSYXZV34GS"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+        <button
+          class="theme-toggle"
+          id="themeToggle"
+          aria-label="Toggle theme"
+          title="Toggle theme"
+        >
+          <span class="theme-icon sun-icon" aria-hidden="true">☀</span>
+          <span class="theme-icon moon-icon" aria-hidden="true">☾</span>
+        </button>
 
-  gtag('config', 'G-WSYXZV34GS');
-</script>
-  <title>Safi Ahmed</title>
-  <link rel="stylesheet" href="css/style.css" />
-</head>
+        <button
+          class="menu-toggle"
+          aria-label="Toggle menu"
+          onclick="toggleMenu()"
+        >
+          ☰
+        </button>
+      </nav>
+    </header>
 
-<body>
-  <!-- Navigation (gets horizontal padding via .container) -->
-  <nav class="container">
-    <div class="logo">
-      <a href="#home" style="text-decoration: none; color: inherit">Safi Ahmed</a>
-    </div>
-    <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#publications">Publications</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">
-      ☰
-    </div>
-  </nav>
+    <main>
+      <section id="home" class="hero section-shell">
+        <div class="hero-grid">
+          <div class="profile-card">
+            <img
+              src="images/My_image.jpg"
+              alt="Safi Ahmed"
+              class="profile-image"
+            />
 
-  <!-- Home Section -->
-  <section id="home" class="container">
-    <div class="left-column">
-      <img src="images/My_image.jpg" alt="Safi Photo" />
-      <p>Email: <span class="email">sappiahmed@gmail.com</span></p>
-      <p>
-        <a href="https://scholar.google.com/citations?user=BMn2XRkAAAAJ&hl=en" target="_blank">Google Scholar</a>
-        |
-        <a href="https://www.linkedin.com/in/safiahmed21/" target="_blank">LinkedIn</a>
-      </p>
-    </div>
+            <div class="profile-links">
+              <div class="email">
+                <a href="mailto:sappiahmed@gmail.com">sappiahmed@gmail.com</a>
+                <a href="mailto:safi@kw.ac.kr">safi@kw.ac.kr</a>
+              </div>
 
-    <div class="right-column">
-      <h2>Safi Ahmed</h2>
-      <p>
-        I am an MS integrated PhD student in Electronic Engineering at Kwangwoon
-        University, Seoul, Korea, with a strong background in Textile
-        Engineering. I earned my Bachelor of Science in Fabric Engineering
-        from Bangladesh University of Textiles (BUTEX) in November 2024. My
-        research interests focus on smart textiles, wearable sensors, and
-        flexible electronics, with particular expertise in the development of
-        textile-based resistive and capacitive pressure, touch, and strain
-        sensors for human–machine interaction and healthcare applications. I
-        bring experience in interdisciplinary collaboration and a dedication
-        to translating research concepts into practical, impactful
-        innovations.
-      </p>
-    </div>
-  </section>
+              <div class="inline-links">
+                <a
+                  href="https://scholar.google.com/citations?user=BMn2XRkAAAAJ&hl=en"
+                  target="_blank"
+                  >Google Scholar</a
+                >
+                <span>|</span>
+                <a
+                  href="https://www.linkedin.com/in/safiahmed21/"
+                  target="_blank"
+                  >LinkedIn</a
+                >
+              </div>
+            </div>
+          </div>
 
-  <!-- Research Statement -->
-  <section id="research-statement" class="container">
-    <div class="research-statement">
-      <h2>Research Statement</h2>
-      <p>
-        My research interests include Smart Textiles, Flexible Electronics,
-        development of Wearable Sensors, and Bioelectronics. I am also
-        interested in Internet of Things and Machine Learning. My goal is to
-        develop smart flexible sensors that can monitor human motion and vital
-        body signals by leveraging Machine Learning.
-      </p>
-    </div>
-  </section>
+          <div class="hero-content">
+            <h1>Safi Ahmed</h1>
+            <div class="text-block">
+              <p>
+                I am an MS integrated PhD student in Electronic Engineering at
+                Kwangwoon University, Seoul, Korea, with a strong background in
+                Textile Engineering. I earned my Bachelor of Science in Fabric
+                Engineering from Bangladesh University of Textiles (BUTEX) in
+                November 2024. My research interests focus on smart textiles,
+                wearable sensors, and flexible electronics, with particular
+                expertise in the development of textile-based resistive and
+                capacitive pressure, touch, and strain sensors for human–machine
+                interaction and healthcare applications. I bring experience in
+                interdisciplinary collaboration and a dedication to translating
+                research concepts into practical, impactful innovations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  <!-- Education -->
+      <section id="research-statement" class="section-shell content-section">
+        <div class="section-heading">
+          <h2>Research</h2>
+        </div>
+        <div class="text-block">
+          <p>
+            My research interests include Smart Textiles, Flexible Electronics,
+            development of Wearable Sensors, and Bioelectronics. I am also
+            interested in Internet of Things and Machine Learning. My goal is to
+            develop smart flexible sensors that can monitor human motion and
+            vital body signals by leveraging Machine Learning.
+          </p>
+        </div>
+      </section>
 
-  <section id="education" class="container">
-    <h2>Education</h2>
+      <section id="education" class="section-shell content-section">
+        <div class="section-heading">
+          <h2>Education</h2>
+        </div>
 
-    <div class="edu-row">
-      <div class="edu-left">
-        <b>Kwangwoon University</b> <br />
-        <p style="font-size: 14px">
-          MS integrated PhD in Electronic Engineering
-        </p>
-      </div>
-      <div class="edu-right">
-        <i>Seoul, South Korea <br />September 2025 - Present</i>
-      </div>
-    </div>
+        <div class="timeline-list">
+          <article class="timeline-item">
+            <div>
+              <h3>Kwangwoon University</h3>
+              <p>MS integrated PhD in Electronic Engineering</p>
+            </div>
+            <div class="meta">
+              <span>Seoul, South Korea</span>
+              <span>September 2025 - Present</span>
+            </div>
+          </article>
 
-    <div class="edu-row">
-      <div class="edu-left">
-        <b>Bangladesh University of Textiles</b> <br />
-        <p style="font-size: 14px">
-          Bachelor of Science in Fabric Engineering
-        </p>
-      </div>
-      <div class="edu-right">
-        <i>Dhaka, Bangladesh <br />March 2019 - November 2024</i>
-      </div>
-    </div>
-  </section>
+          <article class="timeline-item">
+            <div>
+              <h3>Bangladesh University of Textiles</h3>
+              <p>Bachelor of Science in Fabric Engineering</p>
+            </div>
+            <div class="meta">
+              <span>Dhaka, Bangladesh</span>
+              <span>March 2019 - November 2024</span>
+            </div>
+          </article>
+        </div>
+      </section>
 
-  <!-- Experience -->
-  <section id="experience" class="container">
-    <h2>Experience</h2>
+      <section id="experience" class="section-shell content-section">
+        <div class="section-heading">
+          <h2>Experience</h2>
+        </div>
 
+        <div class="timeline-list">
+          <article class="timeline-item">
+            <div>
+              <h3>Graduate Research Assistant</h3>
+              <p>
+                Advanced Sensor and Energy Research (<a
+                  href="http://aser.kw.ac.kr/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >ASER</a
+                >) Lab
+              </p>
+              <p>
+                PI:
+                <a
+                  href="http://aser.kw.ac.kr/members/director"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Professor Park Jae Yeong</a
+                >
+              </p>
+            </div>
+            <div class="meta">
+              <span>Seoul, South Korea</span>
+              <span>September 2025 - Present</span>
+            </div>
+          </article>
 
-<div class="experience-row">
-      <div class="exp-left">
-        <b>Graduate Research Assistant</b><br />
-        Advanced Sensor and Energy Research (<a href="http://aser.kw.ac.kr/"
-          target="_blank"><i>ASER</i></a>) Lab<br />
-        PI: <a href="http://aser.kw.ac.kr/members/director"
-          target="_blank">Professor Park Jae Yeong</a>
-      </div>
-      <div class="exp-right">
-        <i>Seoul, South Korea <br/>September 2025 - Present</i>
-      </div>
-    </div>
-    
+          <article class="timeline-item">
+            <div>
+              <h3>Research Assistant</h3>
+              <p>Smart &amp; Functional Textile Lab</p>
+              <p>Department of Fabric Engineering, BUTEX</p>
+              <p>
+                Worked on the development of textile-based wearable sensors for
+                healthcare and robotics applications.
+              </p>
+            </div>
+            <div class="meta">
+              <span>Dhaka, Bangladesh</span>
+              <span>July 2022 - November 2024</span>
+            </div>
+          </article>
 
-    <div class="experience-row">
-      <div class="exp-left">
-        <b>Research Assistant</b><br />
-        Smart & Functional Textile Lab <br />
-        Department of Fabric Engineering, BUTEX <br />
-        Worked on the development of textile-based wearable sensors for
-        healthcare and robotics applications.
-      </div>
-      <div class="exp-right">
-        <i>Dhaka, Bangladesh <br />July 2022 - November 2024</i>
-      </div>
-    </div>
+          <article class="timeline-item">
+            <div>
+              <h3>Research Intern</h3>
+              <p>
+                Access Computing Summer Program (<a
+                  href="https://mp.weixin.qq.com/s/AVSiif6D_Yl8z-a9xDghQg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >ACSP</a
+                >) 2024
+              </p>
+              <p>
+                Mentor:
+                <a
+                  href="https://yyueluo.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Prof. Yiyue Luo</a
+                >
+                (University of Washington)
+              </p>
+              <p>
+                Project: Design and Fabrication Toolkit for Ubiquitous Tactile
+                Interface
+              </p>
+            </div>
+            <div class="meta">
+              <span>Remote</span>
+              <span>June 2024 - August 2024</span>
+            </div>
+          </article>
 
-    <div class="experience-row">
-      <div class="exp-left">
-        <b>Research Intern</b><br />
-        Access Computing Summer Program (<a href="https://mp.weixin.qq.com/s/AVSiif6D_Yl8z-a9xDghQg"
-          target="_blank"><i>ACSP</i></a>) 2024 <br />
-        Mentor:
-        <a href="https://yyueluo.com/" target="_blank">Prof. Yiyue Luo</a>
-        (University of Washington) <br />
-        Project: Design and Fabrication Toolkit for Ubiquitous Tactile
-        Interface
-      </div>
-      <div class="exp-right">
-        <i>Remote <br />June 2024 - August 2024</i>
-      </div>
-    </div>
+          <article class="timeline-item">
+            <div>
+              <h3>Junior Executive</h3>
+              <p>Central R&amp;D, Masco Group</p>
+            </div>
+            <div class="meta">
+              <span>Tongi, Gazipur</span>
+              <span>November 2024 - July 2025</span>
+            </div>
+          </article>
+        </div>
+      </section>
 
-    <div class="experience-row">
-      <div class="exp-left">
-        <b>Junior Executive</b><br />
-        Central R&D, Masco Group
-      </div>
-      <div class="exp-right">
-        <i>Tongi, Gazipur <br />November 2024 - July 2025</i>
-      </div>
-    </div>
-  </section>
+      <section id="publications" class="section-shell content-section">
+        <div class="section-heading">
+          <h2>Publications</h2>
+        </div>
 
-  <!-- Publications -->
-  <section id="publications" class="container">
-    <h2>Publications</h2>
-    <div class="pub-row">
-      <div class="pub-left">
-        <img src="images/Paper_5.png" alt="First Poster" />
-      </div>
-    <div class="pub-right">
-        <b>Safi Ahmed</b>, Gagan Bahadur Pradhan, Jae Yeong Park*. <br />
-        <b>Highly Stretchable Conductive Hydrogel for Hand Gesture Recognition and Human-Computer Interaction</b>. <br>
-        <i>Micro- and Nano-Systems (KMEMS) Conference</i>, Jeju, Mar. 2026.
-        <a href="#" onclick="return false;" target="_blank">[Poster] </a>
-         <br>
-        <b>[Excellent Poster Presentation Award]</b>
-      </div>
-    </div>
-    <div class="pub-row">
-      <div class="pub-left">
-        <img src="images/Paper_1.png" alt="First Paper" />
-      </div>
-      <div class="pub-right">
-        <b>Safi Ahmed</b>, Md. Mohaddesh Hosen*, Abdullah Al Saif, Md. Tanvir
-        Ahmed Khandaker. <br />
-        <b>Digital Machine Knitted Resistive Strain Sensor for Wireless Human
-          Motion Monitoring</b>.<br>
-        <i>Advanced Engineering Materials</i>, Dec. 2025.
-        <a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adem.202502090" target="_blank">[Paper] </a>
-      </div>
-    </div>
-    <div class="pub-row">
-      <div class="pub-left">
-        <img src="images/Paper_2.png" alt="Second Paper" />
-      </div>
-      <div class="pub-right">
-        Dewan Murshed Ahmed*, Afsana Mobin, Nadvi Mamun Pritha, Arif Istiak
-        Ador, <b>Safi Ahmed</b>, and Md. Raju Ahmed
-        <br />
-        <b>Advanced Knitting Technology for Sustainable Fashion</b>
-        <i>(Book Chapter)</i>
-        <br />
-        Book: SDG 12 and Global Fashion Textiles Production. Springer, Singapore.
-        <a href="https://link.springer.com/chapter/10.1007/978-981-96-9051-0_6" target="_blank">[Paper]</a>
-      </div>
-    </div>
+        <div class="publications-grid">
+          <article class="publication-card">
+            <img src="images/Paper_5.png" alt="Poster preview" />
+            <div>
+              <p class="pub-authors">
+                <span class="author-me">Safi Ahmed</span>, Gagan Bahadur
+                Pradhan, Jae Yeong Park*
+              </p>
+              <h3>
+                Highly Stretchable Conductive Hydrogel for Hand Gesture
+                Recognition and Human-Computer Interaction
+              </h3>
+              <p>
+                <em>Micro and Nano-Systems (KMEMS) Conference</em>, Jeju, Mar.
+                2026.
+              </p>
+              <p><strong>Excellent Poster Presentation Award</strong></p>
+              <a href="#" onclick="return false;">Poster</a>
+            </div>
+          </article>
 
-    <div class="pub-row">
-      <div class="pub-left">
-        <img src="images/Paper_3.png" alt="Third Paper" />
-      </div>
-      <div class="pub-right">
-        Md. Mohaddesh Hosen*, <b>Safi Ahmed</b>. <br />
-        <b>Seamless Integration of Touch Sensing Smart Textiles through
-          Computerized Machine Knitting</b>
-        <br />
-        <i>Journal of Engineered Fibers and Fabrics</i>, Mar. 2025.
-        <a href="https://journals.sagepub.com/doi/10.1177/15589250251331051" target="_blank">[Paper]
-        </a>
-      </div>
-    </div>
+          <article class="publication-card">
+            <img src="images/Paper_1.png" alt="First paper preview" />
+            <div>
+              <p class="pub-authors">
+                <span class="author-me">Safi Ahmed</span>, Md. Mohaddesh Hosen*,
+                Abdullah Al Saif, Md. Tanvir Ahmed Khandaker.
+              </p>
+              <h3>
+                Digital Machine Knitted Resistive Strain Sensor for Wireless
+                Human Motion Monitoring
+              </h3>
+              <p><em>Advanced Engineering Materials</em>, Dec. 2025.</p>
+              <a
+                href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adem.202502090"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Paper</a
+              >
+            </div>
+          </article>
 
-    <div class="pub-row">
-      <div class="pub-left">
-        <img src="images/Paper_4.png" alt="Fourth Paper" />
-      </div>
-      <div class="pub-right">
-        Md. Mohaddesh Hosen*, Ahmadul Ferdous, and <b>Safi Ahmed</b> <br />
-        <b>Easily scalable and highly flexible machine knitted resistive
-          pressure sensor for smart textile applications</b><br />
-        <i>Journal of Industrial Textiles</i>, vol. 54, Aug. 2024.
-        <a href="https://journals.sagepub.com/doi/10.1177/15280837241279454" target="_blank">[Paper]</a>
-      </div>
-    </div>
-  </section>
+          <article class="publication-card">
+            <img src="images/Paper_2.png" alt="Second paper preview" />
+            <div>
+              <p class="pub-authors">
+                Dewan Murshed Ahmed*, Afsana Mobin, Nadvi Mamun Pritha, Arif
+                Istiak Ador, <span class="author-me">Safi Ahmed</span>, and Md.
+                Raju Ahmed
+              </p>
+              <h3>Advanced Knitting Technology for Sustainable Fashion</h3>
+              <p><em>Book Chapter</em></p>
+              <p>
+                Book: SDG 12 and Global Fashion Textiles Production. Springer,
+                Singapore.
+              </p>
+              <a
+                href="https://link.springer.com/chapter/10.1007/978-981-96-9051-0_6"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Paper</a
+              >
+            </div>
+          </article>
 
-  <!-- Contact -->
-  <section id="contact" class="container">
-    <h2>Contact</h2>
-    <div class="contact-left">
-      <p>
-        <a href="mailto:sappiahmed@gmail.com">Email</a>,
-        <a href="https://www.linkedin.com/in/safiahmed21/" target="_blank">LinkedIn</a>,
-        <a href="https://scholar.google.com/citations?user=BMn2XRkAAAAJ&hl=en" target="_blank">Google Scholar</a>,
-        Seoul, South Korea
-      </p>
-    </div>
-  </section>
-  <script src="js/script.js"></script>
-  <!-- Back to Top Button (unchanged) -->
-  <button id="backToTop" onclick="scrollToTop()">↑ Top</button>
-</body>
+          <article class="publication-card">
+            <img src="images/Paper_3.png" alt="Third paper preview" />
+            <div>
+              <p class="pub-authors">
+                Md. Mohaddesh Hosen*, <span class="author-me">Safi Ahmed</span>.
+              </p>
+              <h3>
+                Seamless Integration of Touch Sensing Smart Textiles through
+                Computerized Machine Knitting
+              </h3>
+              <p>
+                <em>Journal of Engineered Fibers and Fabrics</em>, Mar. 2025.
+              </p>
+              <a
+                href="https://journals.sagepub.com/doi/10.1177/15589250251331051"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Paper</a
+              >
+            </div>
+          </article>
 
+          <article class="publication-card">
+            <img src="images/Paper_4.png" alt="Fourth paper preview" />
+            <div>
+              <p class="pub-authors">
+                Md. Mohaddesh Hosen*, Ahmadul Ferdous, and
+                <span class="author-me">Safi Ahmed</span>
+              </p>
+              <h3>
+                Easily scalable and highly flexible machine knitted resistive
+                pressure sensor for smart textile applications
+              </h3>
+              <p>
+                <em>Journal of Industrial Textiles</em>, vol. 54, Aug. 2024.
+              </p>
+              <a
+                href="https://journals.sagepub.com/doi/10.1177/15280837241279454"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Paper</a
+              >
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section
+        id="contact"
+        class="section-shell content-section contact-section"
+      >
+        <div class="section-heading">
+          <h2>Contact</h2>
+        </div>
+        <div class="contact-card">
+          <p>
+            <a href="mailto:sappiahmed@gmail.com">Email</a>
+            <span>·</span>
+            <a
+              href="https://www.linkedin.com/in/safiahmed21/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >LinkedIn</a
+            >
+            <span>·</span>
+            <a
+              href="https://scholar.google.com/citations?user=BMn2XRkAAAAJ&hl=en"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Google Scholar</a
+            >
+          </p>
+          <p>Seoul, South Korea</p>
+        </div>
+      </section>
+    </main>
+
+    <button id="backToTop" onclick="scrollToTop()" aria-label="Back to top">
+      ↑
+    </button>
+    <script src="js/script.js"></script>
+  </body>
 </html>
-<!--Final Commit-->
