@@ -2,6 +2,16 @@
 <html lang="en">
 
 <head>
+
+  <script>
+    // Default theme = Night Mode
+    const savedTheme = localStorage.getItem("theme");
+    document.documentElement.setAttribute(
+      "data-theme",
+      savedTheme || "dark"
+    );
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Safi Ahmed — smart textiles, wearable sensors and flexible electronics researcher at Kwangwoon University." />

@@ -27,9 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const toggleBtn = document.getElementById("themeToggle");
   const root = document.documentElement;
   const savedTheme = localStorage.getItem("theme");
-  const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-  root.setAttribute("data-theme", savedTheme || (prefersDark ? "dark" : "light"));
+  // Night Mode is the default
+  root.setAttribute("data-theme", savedTheme || "dark");
 
   if (toggleBtn) {
     toggleBtn.addEventListener("click", function () {
