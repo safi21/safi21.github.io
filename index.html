@@ -4,25 +4,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Safi Ahmed</title>
+  <meta name="description" content="Safi Ahmed — smart textiles, wearable sensors and flexible electronics researcher at Kwangwoon University." />
+  <title>Safi Ahmed — Smart Textiles &amp; Wearable Sensors</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600&family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
+  <canvas id="bgWeave" aria-hidden="true"></canvas>
+  <a class="skip-link" href="#home">Skip to content</a>
+  <div id="scrollProgress"></div>
+
   <header class="site-header">
     <nav class="nav-shell">
-      <a href="#home" class="brand">Safi Ahmed</a>
+      <a href="#home" class="brand">Safi Ahmed <span class="brand-mark">S.A</span></a>
       <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#research-statement">Research</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#publications">Publications</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#home" data-nav>Home</a></li>
+        <li><a href="#research-statement" data-nav>Research</a></li>
+        <li><a href="#education" data-nav>Education</a></li>
+        <li><a href="#experience" data-nav>Experience</a></li>
+        <li><a href="#publications" data-nav>Publications</a></li>
+        <li><a href="#contact" data-nav>Contact</a></li>
       </ul>
 
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
@@ -40,7 +44,15 @@
     <section id="home" class="hero section-shell">
       <div class="hero-grid">
         <div class="profile-card">
-          <img src="images/My_image.jpg" alt="Safi Ahmed" class="profile-image" />
+          <div class="profile-image-wrap">
+            <svg class="thread-ring" viewBox="0 0 188 188" aria-hidden="true">
+              <circle cx="94" cy="94" r="90" fill="none" stroke="var(--copper)" stroke-width="1.4"
+                stroke-dasharray="2 7" stroke-linecap="round" opacity="0.75" />
+            </svg>
+            <img src="images/My_image.jpg" alt="Portrait of Safi Ahmed" class="profile-image" width="168" height="168" fetchpriority="high" />
+          </div>
+
+          <span class="profile-role">PhD Student · Electronic Engineering</span>
 
           <div class="profile-links">
             <div class="email">
@@ -49,15 +61,16 @@
             </div>
 
             <div class="inline-links">
-              <a href="https://scholar.google.com/citations?user=BMn2XRkAAAAJ&hl=en" target="_blank">Google Scholar</a>
-              <span>|</span>
-              <a href="https://www.linkedin.com/in/safiahmed21/" target="_blank">LinkedIn</a>
+              <a href="https://scholar.google.com/citations?user=BMn2XRkAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+              <a href="https://www.linkedin.com/in/safiahmed21/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             </div>
           </div>
         </div>
 
         <div class="hero-content">
+          <span class="eyebrow"><span class="dot"></span>Kwangwoon University · Seoul, Korea</span>
           <h1>Safi Ahmed</h1>
+
           <div class="text-block">
             <p>
               I am an MS integrated PhD student in Electronic Engineering at
@@ -73,13 +86,20 @@
               research concepts into practical, impactful innovations.
             </p>
           </div>
+
+          <div class="hero-stats">
+            <span class="hero-stat"><strong>10</strong>&nbsp;Publications</span>
+            <span class="hero-stat"><strong>1</strong>&nbsp;Best Poster Award</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="research-statement" class="section-shell content-section">
+    <section id="research-statement" class="section-shell content-section reveal">
       <div class="section-heading">
-        <h2>Research</h2>
+        <span class="section-kicker">Where yarn meets circuit</span>
+        <span class="section-rule"></span>
+        <h2>Research Focus</h2>
       </div>
       <div class="text-block">
         <p>
@@ -92,8 +112,10 @@
       </div>
     </section>
 
-    <section id="education" class="section-shell content-section">
+    <section id="education" class="section-shell content-section reveal">
       <div class="section-heading">
+        <span class="section-kicker">How I got here</span>
+        <span class="section-rule"></span>
         <h2>Education</h2>
       </div>
 
@@ -105,7 +127,7 @@
           </div>
           <div class="meta">
             <span>Seoul, South Korea</span>
-            <span>September 2025 - Present</span>
+            <span>September 2025 – Present</span>
           </div>
         </article>
 
@@ -116,14 +138,16 @@
           </div>
           <div class="meta">
             <span>Dhaka, Bangladesh</span>
-            <span>March 2019 - November 2024</span>
+            <span>March 2019 – November 2024</span>
           </div>
         </article>
       </div>
     </section>
 
-    <section id="experience" class="section-shell content-section">
+    <section id="experience" class="section-shell content-section reveal">
       <div class="section-heading">
+        <span class="section-kicker">Labs, mentors, and roles</span>
+        <span class="section-rule"></span>
         <h2>Experience</h2>
       </div>
 
@@ -143,7 +167,7 @@
           </div>
           <div class="meta">
             <span>Seoul, South Korea</span>
-            <span>September 2025 - Present</span>
+            <span>September 2025 – Present</span>
           </div>
         </article>
 
@@ -159,7 +183,7 @@
           </div>
           <div class="meta">
             <span>Dhaka, Bangladesh</span>
-            <span>July 2022 - November 2024</span>
+            <span>July 2022 – November 2024</span>
           </div>
         </article>
 
@@ -182,7 +206,7 @@
           </div>
           <div class="meta">
             <span>Remote</span>
-            <span>June 2024 - August 2024</span>
+            <span>June 2024 – August 2024</span>
           </div>
         </article>
 
@@ -193,205 +217,174 @@
           </div>
           <div class="meta">
             <span>Tongi, Gazipur</span>
-            <span>November 2024 - July 2025</span>
+            <span>November 2024 – July 2025</span>
           </div>
         </article>
       </div>
     </section>
 
-    <section id="publications" class="section-shell content-section">
+    <section id="publications" class="section-shell content-section reveal">
       <div class="section-heading">
+        <span class="section-kicker">Papers, chapters &amp; posters</span>
+        <span class="section-rule"></span>
         <h2>Publications</h2>
+      </div>
+
+      <div class="pub-filters" role="group" aria-label="Filter publications by topic">
+        <button class="pub-filter active" data-filter="all">All</button>
+        <button class="pub-filter" data-filter="textiles">Textiles</button>
+        <button class="pub-filter" data-filter="sensors">Sensors</button>
+        <button class="pub-filter" data-filter="bioelectronics">Bioelectronics</button>
+        <button class="pub-filter" data-filter="hci">HCI</button>
+        <button class="pub-filter" data-filter="wearables">Wearables</button>
       </div>
 
       <div class="publications-grid">
 
-        <article class="publication-card">
-          <img src="images/Robiul_2_et_al.png" alt="Under Review" />
+        <article class="publication-card" data-tags="sensors bioelectronics wearables">
+          <div class="pub-media"><img src="images/Robiul_2_et_al.png" alt="Figure from the triboelectric tactile sensor manuscript" loading="lazy" width="220" height="140" /></div>
           <div>
-            <h3>
-              Triboelectric Tactile Sensor for Healthcare Monitoring
-            </h3>
+            <div class="pub-tags"><span class="pub-tag">Sensors</span><span class="pub-tag">TENG</span></div>
+            <h3>Triboelectric Tactile Sensor for Healthcare Monitoring</h3>
             <p class="pub-authors">
-              	M. Robiul Islam, 		Ankitendran Mishra, 	Seong Min Kim, 	Md Shofiul Alam <span class="author-me">Safi Ahmed</span> <i>et al</i>.
+              M. Robiul Islam, Ankitendran Mishra, Seong Min Kim, Md Shofiul Alam, <span class="author-me">Safi Ahmed</span> <i>et al</i>.
             </p>
-
-            <p><em>(Under Review)</em></p>
+            <p><em>Under Review</em></p>
           </div>
         </article>
 
-        <article class="publication-card">
-          <img src="images/SeungJae_et_al.png" alt="Under Review" />
+        <article class="publication-card" data-tags="sensors wearables bioelectronics">
+          <div class="pub-media"><img src="images/SeungJae_et_al.png" alt="Figure from the MXene breathable patch manuscript" loading="lazy" width="220" height="140" /></div>
           <div>
-            <h3>
-              MXene-composite-based Multifunctional Breathable Patch for Activity Monitoring
-            </h3>
+            <div class="pub-tags"><span class="pub-tag">Sensors</span><span class="pub-tag">Wearables</span></div>
+            <h3>MXene-composite-based Multifunctional Breathable Patch for Activity Monitoring</h3>
             <p class="pub-authors">
-              	Seung Jae Lim, 	Gagan Bahadur Pradhan, <span class="author-me">Safi Ahmed</span>, He Soo Choi, Tae Gwan Lee, Shital Sharma, Moon Seong Jo, and Jae Yeong Park*.
+              Seung Jae Lim, Gagan Bahadur Pradhan, <span class="author-me">Safi Ahmed</span>, He Soo Choi, Tae Gwan Lee, Shital Sharma, Moon Seong Jo, and Jae Yeong Park*.
             </p>
-
-            <p><em>(Under Review)</em></p>
+            <p><em>Under Review</em></p>
           </div>
         </article>
 
-        <article class="publication-card">
-          <img src="images/Selim_et_al.png" alt="Under Review" />
+        <article class="publication-card" data-tags="bioelectronics sensors">
+          <div class="pub-media"><img src="images/Selim_et_al.png" alt="Figure from the strain-adaptive nanocomposite manuscript" loading="lazy" width="220" height="140" /></div>
           <div>
-            <h3>
-              Polyethylene Glycol-functionalized and Conductive Polymer-Carbon Nanotube, Strain-adaptive Nanocomposite for Epidermal Bioelectronics
-            </h3>
+            <div class="pub-tags"><span class="pub-tag">Bioelectronics</span><span class="pub-tag">Sweat Sensing</span></div>
+            <h3>Polyethylene Glycol-functionalized and Conductive Polymer-Carbon Nanotube, Strain-adaptive Nanocomposite for Epidermal Bioelectronics</h3>
             <p class="pub-authors">
-              	Md Selim Reza, Zahidul Islam, Ahmad Abdus Samad, <span class="author-me">Safi Ahmed</span>, Gagan Bahadur Pradhan, Dongyun Kim, Jiwon Go, Md Johurul Islam, and Jae Yeong Park*.
+              Md Selim Reza, Zahidul Islam, Ahmad Abdus Samad, <span class="author-me">Safi Ahmed</span>, Gagan Bahadur Pradhan, Dongyun Kim, Jiwon Go, Md Johurul Islam, and Jae Yeong Park*.
             </p>
             <p><em>Composites Part B: Engineering</em>, Aug. 2026.</p>
-            <a href="#" onclick="return false;">Accepted</a>
+            <a class="pub-link is-disabled" href="#" onclick="return false;" aria-disabled="true">Accepted</a>
           </div>
         </article>
 
-        <article class="publication-card">
-          <img src="images/Zahid_et_al.png" alt="Under Review" />
+        <article class="publication-card" data-tags="bioelectronics sensors wearables">
+          <div class="pub-media"><img src="images/Zahid_et_al.png" alt="Figure from the MOF-derived nanohybrid patch paper" loading="lazy" width="220" height="140" /></div>
           <div>
-            <h3>
-              MOF-Derived Transition Metal Carbide@Electroactive Polypyrrole Nanohybrid-Based High-Performance and Stretchable Multimodal Patch for Perspiration Analysis
-            </h3>
+            <div class="pub-tags"><span class="pub-tag">Bioelectronics</span><span class="pub-tag">Sweat Sensing</span></div>
+            <h3>MOF-Derived Transition Metal Carbide@Electroactive Polypyrrole Nanohybrid-Based High-Performance and Stretchable Multimodal Patch for Perspiration Analysis</h3>
             <p class="pub-authors">
-              Zahidul Islam, 	Md Selim Reza, M. Robiul Islam, Ahmad Abdus Samad, 	Md Johurul Islam, Jiwon Go, Md Shofiul Alam, <span class="author-me">Safi Ahmed</span>, and Jae Yeong Park*.
+              Zahidul Islam, Md Selim Reza, M. Robiul Islam, Ahmad Abdus Samad, Md Johurul Islam, Jiwon Go, Md Shofiul Alam, <span class="author-me">Safi Ahmed</span>, and Jae Yeong Park*.
             </p>
-
             <p><em>Advanced Functional Materials</em>, Jul. 2026.</p>
-            <a href="https://doi.org/10.1002/adfm.77409" target="_blank"
-              rel="noopener noreferrer">Paper</a>
+            <a class="pub-link" href="https://doi.org/10.1002/adfm.77409" target="_blank" rel="noopener noreferrer">Read paper →</a>
           </div>
         </article>
 
-        <article class="publication-card">
-          <img src="images/HCI_TENG.png" alt="Under Review" />
+        <article class="publication-card" data-tags="hci wearables sensors">
+          <div class="pub-media"><img src="images/HCI_TENG.png" alt="Figure from the triboelectric HCI sensor paper" loading="lazy" width="220" height="140" /></div>
           <div>
-            <h3>
-              Bifunctional Silicone@NENU-5 Nanocomposite-based Wearable Serpi-gami Triboelectric Sensor for Human-Computer Interaction
-            </h3>
+            <div class="pub-tags"><span class="pub-tag">HCI</span><span class="pub-tag">Wearables</span><span class="pub-tag">TENG</span></div>
+            <h3>Bifunctional Silicone@NENU-5 Nanocomposite-based Wearable Serpi-gami Triboelectric Sensor for Human-Computer Interaction</h3>
             <p class="pub-authors">
-              M. Robiul Islam, Md Shofiul Alam, <span class="author-me">Safi Ahmed</span>, Zahidul Islam,
-              Md Selim Reza, Moon Seong Jo, and Jae Yeong Park*.
+              M. Robiul Islam, Md Shofiul Alam, <span class="author-me">Safi Ahmed</span>, Zahidul Islam, Md Selim Reza, Moon Seong Jo, and Jae Yeong Park*.
             </p>
-
             <p><em>Nano Energy</em>, Jul. 2026.</p>
-            <a href="https://doi.org/10.1016/j.nanoen.2026.112213" target="_blank"
-              rel="noopener noreferrer">Paper</a>
+            <a class="pub-link" href="https://doi.org/10.1016/j.nanoen.2026.112213" target="_blank" rel="noopener noreferrer">Read paper →</a>
           </div>
         </article>
 
-        <article class="publication-card">
-          <img src="images/Paper_5.png" alt="Poster preview" />
+        <article class="publication-card" data-tags="hci sensors">
+          <div class="pub-media"><img src="images/Paper_5.png" alt="Figure from the hydrogel hand-gesture poster" loading="lazy" width="220" height="140" /></div>
           <div>
-            <h3>
-              Highly Stretchable Conductive Hydrogel for Hand Gesture
-              Recognition and Human-Computer Interaction
-            </h3>
+            <div class="pub-tags"><span class="pub-tag">HCI</span><span class="pub-tag">Hydrogel</span></div>
+            <h3>Highly Stretchable Conductive Hydrogel for Hand Gesture Recognition and Human-Computer Interaction</h3>
             <p class="pub-authors">
-              <span class="author-me">Safi Ahmed</span>, Gagan Bahadur
-              Pradhan, Jae Yeong Park*
+              <span class="author-me">Safi Ahmed</span>, Gagan Bahadur Pradhan, Jae Yeong Park*
             </p>
-            <p>
-              <em>Micro and Nano-Systems (KMEMS) Conference</em>, Jeju, Mar.
-              2026.
-            </p>
-            <p><strong>Excellent Poster Presentation Award</strong></p>
-            <a href="#" onclick="return false;">Poster</a>
+            <p><em>Micro and Nano-Systems (KMEMS) Conference</em>, Jeju, Mar. 2026.</p>
+            <p class="pub-award">★ Excellent Poster Presentation Award</p>
+            <a class="pub-link is-disabled" href="#" onclick="return false;" aria-disabled="true">Poster</a>
           </div>
         </article>
 
-        <article class="publication-card">
-          <img src="images/Paper_1.png" alt="First paper preview" />
+        <article class="publication-card" data-tags="textiles sensors">
+          <div class="pub-media"><img src="images/Paper_1.png" alt="Figure from the knitted resistive strain sensor paper" loading="lazy" width="220" height="140" /></div>
           <div>
-            <h3>
-              Digital Machine Knitted Resistive Strain Sensor for Wireless
-              Human Motion Monitoring
-            </h3>
+            <div class="pub-tags"><span class="pub-tag">Textiles</span><span class="pub-tag">Sensors</span></div>
+            <h3>Digital Machine Knitted Resistive Strain Sensor for Wireless Human Motion Monitoring</h3>
             <p class="pub-authors">
-              <span class="author-me">Safi Ahmed</span>, Md. Mohaddesh Hosen*,
-              Abdullah Al Saif, Md. Tanvir Ahmed Khandaker.
+              <span class="author-me">Safi Ahmed</span>, Md. Mohaddesh Hosen*, Abdullah Al Saif, Md. Tanvir Ahmed Khandaker.
             </p>
-
             <p><em>Advanced Engineering Materials</em>, Dec. 2025.</p>
-            <a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adem.202502090" target="_blank"
-              rel="noopener noreferrer">Paper</a>
+            <a class="pub-link" href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adem.202502090" target="_blank" rel="noopener noreferrer">Read paper →</a>
           </div>
         </article>
 
-        <article class="publication-card">
-          <img src="images/Paper_2.png" alt="Second paper preview" />
+        <article class="publication-card" data-tags="textiles">
+          <div class="pub-media"><img src="images/Paper_2.png" alt="Figure from the sustainable knitting book chapter" loading="lazy" width="220" height="140" /></div>
           <div>
+            <div class="pub-tags"><span class="pub-tag">Textiles</span><span class="pub-tag">Sustainability</span></div>
             <h3>Advanced Knitting Technology for Sustainable Fashion</h3>
             <p class="pub-authors">
-              Dewan Murshed Ahmed*, Afsana Mobin, Nadvi Mamun Pritha, Arif
-              Istiak Ador, <span class="author-me">Safi Ahmed</span>, and Md.
-              Raju Ahmed
+              Dewan Murshed Ahmed*, Afsana Mobin, Nadvi Mamun Pritha, Arif Istiak Ador, <span class="author-me">Safi Ahmed</span>, and Md. Raju Ahmed
             </p>
-
-            <p>
-              <em> SDG 12 and Global Fashion Textiles Production. Springer,
-                Singapore. </em>
-            </p>
-            <a href="https://link.springer.com/chapter/10.1007/978-981-96-9051-0_6" target="_blank"
-              rel="noopener noreferrer">Book Chapter</a>
+            <p><em>SDG 12 and Global Fashion Textiles Production.</em> Springer, Singapore.</p>
+            <a class="pub-link" href="https://link.springer.com/chapter/10.1007/978-981-96-9051-0_6" target="_blank" rel="noopener noreferrer">Read chapter →</a>
           </div>
         </article>
 
-        <article class="publication-card">
-          <img src="images/Paper_3.png" alt="Third paper preview" />
+        <article class="publication-card" data-tags="textiles sensors hci">
+          <div class="pub-media"><img src="images/Paper_3.png" alt="Figure from the knitted touch sensing textiles paper" loading="lazy" width="220" height="140" /></div>
           <div>
-            <h3>
-              Seamless Integration of Touch Sensing Smart Textiles through
-              Computerized Machine Knitting
-            </h3>
+            <div class="pub-tags"><span class="pub-tag">Textiles</span><span class="pub-tag">HCI</span></div>
+            <h3>Seamless Integration of Touch Sensing Smart Textiles through Computerized Machine Knitting</h3>
             <p class="pub-authors">
               Md. Mohaddesh Hosen*, <span class="author-me">Safi Ahmed</span>.
             </p>
-            <p>
-              <em>Journal of Engineered Fibers and Fabrics</em>, Mar. 2025.
-            </p>
-            <a href="https://journals.sagepub.com/doi/10.1177/15589250251331051" target="_blank"
-              rel="noopener noreferrer">Paper</a>
+            <p><em>Journal of Engineered Fibers and Fabrics</em>, Mar. 2025.</p>
+            <a class="pub-link" href="https://journals.sagepub.com/doi/10.1177/15589250251331051" target="_blank" rel="noopener noreferrer">Read paper →</a>
           </div>
         </article>
 
-        <article class="publication-card">
-          <img src="images/Paper_4.png" alt="Fourth paper preview" />
+        <article class="publication-card" data-tags="textiles sensors">
+          <div class="pub-media"><img src="images/Paper_4.png" alt="Figure from the knitted resistive pressure sensor paper" loading="lazy" width="220" height="140" /></div>
           <div>
-            <h3>
-              Easily scalable and highly flexible machine knitted resistive
-              pressure sensor for smart textile applications
-            </h3>
+            <div class="pub-tags"><span class="pub-tag">Textiles</span><span class="pub-tag">Sensors</span></div>
+            <h3>Easily scalable and highly flexible machine knitted resistive pressure sensor for smart textile applications</h3>
             <p class="pub-authors">
-              Md. Mohaddesh Hosen*, Ahmadul Ferdous, and
-              <span class="author-me">Safi Ahmed</span>
+              Md. Mohaddesh Hosen*, Ahmadul Ferdous, and <span class="author-me">Safi Ahmed</span>
             </p>
-
-            <p>
-              <em>Journal of Industrial Textiles</em>, vol. 54, Aug. 2024.
-            </p>
-            <a href="https://journals.sagepub.com/doi/10.1177/15280837241279454" target="_blank"
-              rel="noopener noreferrer">Paper</a>
+            <p><em>Journal of Industrial Textiles</em>, vol. 54, Aug. 2024.</p>
+            <a class="pub-link" href="https://journals.sagepub.com/doi/10.1177/15280837241279454" target="_blank" rel="noopener noreferrer">Read paper →</a>
           </div>
         </article>
       </div>
     </section>
 
-    <section id="contact" class="section-shell content-section contact-section">
+    <section id="contact" class="section-shell content-section contact-section reveal">
       <div class="section-heading">
+        <span class="section-kicker">Let's talk</span>
+        <span class="section-rule"></span>
         <h2>Contact</h2>
       </div>
       <div class="contact-card">
-        <p>
-          <a href="mailto:sappiahmed@gmail.com">Email</a>
-          <span>·</span>
-          <a href="https://www.linkedin.com/in/safiahmed21/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <span>·</span>
-          <a href="https://scholar.google.com/citations?user=BMn2XRkAAAAJ&hl=en" target="_blank"
-            rel="noopener noreferrer">Google Scholar</a>
-        </p>
-        <p>Seoul, South Korea</p>
+        <div class="contact-links">
+          <a href="mailto:sappiahmed@gmail.com"><svg class="contact-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14v10H3z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M3.5 5.5l6.5 5 6.5-5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>Email</a>
+          <a href="https://www.linkedin.com/in/safiahmed21/" target="_blank" rel="noopener noreferrer"><svg class="contact-icon" viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="3" width="14" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="7" cy="7.3" r="1" fill="currentColor"/><path d="M7 9.5v5.5M10.3 15V11c0-1.2 3-1.4 3 0v4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>LinkedIn</a>
+          <a href="https://scholar.google.com/citations?user=BMn2XRkAAAAJ&hl=en" target="_blank" rel="noopener noreferrer"><svg class="contact-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3 1.5 8 10 13l8.5-5z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M5 10v4c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5v-4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>Google Scholar</a>
+        </div>
+        <span class="contact-loc">Seoul, South Korea</span>
       </div>
     </section>
   </main>
@@ -399,7 +392,7 @@
   <button id="backToTop" onclick="scrollToTop()" aria-label="Back to top">
     ↑
   </button>
-  <script src="js/script.js"></script>
+  <script src="js/script.js" defer></script>
 </body>
 
 </html>
