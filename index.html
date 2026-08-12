@@ -2,20 +2,12 @@
 <html lang="en">
 
 <head>
-
-  <script>
-    // Default theme = Night Mode
-    const savedTheme = localStorage.getItem("theme");
-    document.documentElement.setAttribute(
-      "data-theme",
-      savedTheme || "dark"
-    );
-  </script>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Safi Ahmed — smart textiles, wearable sensors and flexible electronics researcher at Kwangwoon University." />
   <title>Safi Ahmed</title>
+  <link rel="icon" type="image/png" href="images/title_logo.png" />
+  <link rel="apple-touch-icon" href="images/title_logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600&family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -24,12 +16,13 @@
 
 <body>
   <canvas id="bgWeave" aria-hidden="true"></canvas>
+  <canvas id="bgWeaveGlow" aria-hidden="true"></canvas>
   <a class="skip-link" href="#home">Skip to content</a>
   <div id="scrollProgress"></div>
 
   <header class="site-header">
     <nav class="nav-shell">
-      <a href="#home" class="brand">Safi Ahmed <span class="brand-mark">S.A</span></a>
+      <a href="#home" class="brand">Safi Ahmed</a>
       <ul class="nav-links">
         <li><a href="#home" data-nav>Home</a></li>
         <li><a href="#research-statement" data-nav>Research</a></li>
@@ -95,11 +88,6 @@
               interdisciplinary collaboration and a dedication to translating
               research concepts into practical, impactful innovations.
             </p>
-          </div>
-
-          <div class="hero-stats">
-            <span class="hero-stat"><strong>10</strong>&nbsp;Publications</span>
-            <span class="hero-stat"><strong>1</strong>&nbsp;Best Poster Award</span>
           </div>
         </div>
       </div>
@@ -284,7 +272,7 @@
               Md Selim Reza, Zahidul Islam, Ahmad Abdus Samad, <span class="author-me">Safi Ahmed</span>, Gagan Bahadur Pradhan, Dongyun Kim, Jiwon Go, Md Johurul Islam, and Jae Yeong Park*.
             </p>
             <p><em>Composites Part B: Engineering</em>, Aug. 2026.</p>
-            <a class="pub-link" href="https://doi.org/10.1016/j.compositesb.2026.114089" target="_blank" rel="noopener noreferrer">Read paper →</a>
+            <a class="pub-link is-disabled" href="#" onclick="return false;" aria-disabled="true">Accepted</a>
           </div>
         </article>
 

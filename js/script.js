@@ -125,42 +125,48 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   /* =====================================================
-     Dynamic weave background — optimized.
+     Dynamic weave background — event-driven, not animated.
 
-     Two thread families (indigo "warp" + copper "weft"),
-     quiet at rest, glowing near the cursor. Perf choices:
-     - lines far from the cursor are batched into ONE path
-       + ONE stroke() call per family per frame, instead of
-       a beginPath/stroke per line (this was the main cost).
-     - only the handful of lines actually inside the glow
-       radius are stroked individually.
-     - trig / geometry per family is computed once on
-       resize, not every frame.
-     - colors are converted to rgb once (on load + theme
-       change), not every frame.
-     - devicePixelRatio is capped at 1.5 (imperceptible for
-       hairline threads, meaningfully cheaper to paint).
-     - the loop runs at ~30fps, not 60 — plenty smooth for
-       an ambient background, half the paint work.
-     - the loop fully stops when the tab isn't visible.
+     Earlier version ran a continuous 30fps requestAnimationFrame
+     loop redrawing the *entire* viewport every frame, all the
+     time, even when nobody was moving the mouse. That constant
+     full-canvas clear+redraw is what caused load-time / idle
+     jank, especially on integrated GPUs.
+
+     This version splits the effect into two layers and does
+     real work only when something actually changes:
+
+     - #bgWeave (base): the quiet indigo/copper thread grid.
+       Drawn ONCE (on load, resize, or theme change) and then
+       left alone — zero cost while the page just sits there.
+     - #bgWeaveGlow (overlay): fully transparent, only holds the
+       handful of lines currently glowing near the cursor. It's
+       only touched on pointer movement (rAF-throttled to at
+       most once per frame) and cleared on pointerleave. No
+       mouse movement -> no redraws -> no idle GPU/CPU cost.
+
+     Deferred with requestIdleCallback so the very first paint
+     of the page (fonts, hero, images) isn't competing with this.
      ===================================================== */
-  const canvas = document.getElementById("bgWeave");
-  if (canvas) {
-    const ctx = canvas.getContext("2d", { alpha: true });
+  function initWeave() {
+    const base = document.getElementById("bgWeave");
+    const glow = document.getElementById("bgWeaveGlow");
+    if (!base || !glow) return;
+
+    const baseCtx = base.getContext("2d", { alpha: true });
+    const glowCtx = glow.getContext("2d", { alpha: true });
     const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const SPACING = 38;
     const RADIUS = 190;
-    const FRAME_INTERVAL = 1000 / 30; // ~30fps ambient loop
 
     const families = [
-      { angle: (115 * Math.PI) / 180, colorVar: "--indigo", baseAlpha: 0.16, phaseOffset: 0 },
-      { angle: (25 * Math.PI) / 180, colorVar: "--copper", baseAlpha: 0.14, phaseOffset: 10 },
+      { angle: (115 * Math.PI) / 180, colorVar: "--indigo", baseAlpha: 0.16 },
+      { angle: (25 * Math.PI) / 180, colorVar: "--copper", baseAlpha: 0.14 },
     ];
 
     let dpr = 1;
     let w = 0, h = 0;
     let pointer = { x: -9999, y: -9999, active: false };
-    let running = true;
 
     function hexToRgbString(hex, alpha) {
       const h2 = hex.trim().replace("#", "");
@@ -171,11 +177,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function readColors() {
-      const cs = getComputedStyle(root);
+      const cs = getComputedStyle(document.documentElement);
       families.forEach((f) => {
         const hex = cs.getPropertyValue(f.colorVar).trim() || "#888888";
-        f.baseColor = hexToRgbString(hex, f.baseAlpha);
         f.hex = hex;
+        f.baseColor = hexToRgbString(hex, f.baseAlpha);
       });
     }
 
@@ -198,20 +204,85 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    function resize() {
-      w = window.innerWidth;
-      h = window.innerHeight;
-      dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    function sizeCanvas(canvas, ctx) {
       canvas.width = Math.floor(w * dpr);
       canvas.height = Math.floor(h * dpr);
       canvas.style.width = w + "px";
       canvas.style.height = h + "px";
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    // Base layer: drawn once per resize/theme change. A tiny
+    // deterministic per-line jitter gives an organic, hand-woven
+    // feel without needing any per-frame animation to produce it.
+    function drawBase() {
+      baseCtx.clearRect(0, 0, w, h);
+      families.forEach((f) => {
+        const { dx, dy, nx, ny, half, kStart, kEnd } = f;
+        baseCtx.beginPath();
+        for (let k = kStart; k <= kEnd; k++) {
+          const jitter = (Math.sin(k * 12.9898) * 43758.5453 % 1) * 2.6 - 1.3;
+          const linePos = k * SPACING + jitter;
+          const ax = nx * linePos, ay = ny * linePos;
+          baseCtx.moveTo(ax - dx * half, ay - dy * half);
+          baseCtx.lineTo(ax + dx * half, ay + dy * half);
+        }
+        baseCtx.strokeStyle = f.baseColor;
+        baseCtx.lineWidth = 1;
+        baseCtx.stroke();
+      });
+    }
+
+    // Glow layer: only the lines within RADIUS of the pointer,
+    // recomputed by scanning a tiny local k-range per family
+    // instead of the whole grid.
+    function drawGlow() {
+      glowCtx.clearRect(0, 0, w, h);
+      if (!pointer.active) return;
+
+      families.forEach((f) => {
+        const { dx, dy, nx, ny, half, hex } = f;
+        const pn = pointer.x * nx + pointer.y * ny;
+        const kLo = Math.floor((pn - RADIUS) / SPACING);
+        const kHi = Math.ceil((pn + RADIUS) / SPACING);
+
+        for (let k = kLo; k <= kHi; k++) {
+          const jitter = (Math.sin(k * 12.9898) * 43758.5453 % 1) * 2.6 - 1.3;
+          const linePos = k * SPACING + jitter;
+          const dist = Math.abs(pn - linePos);
+          if (dist >= RADIUS) continue;
+
+          const t = 1 - dist / RADIUS;
+          const ease = t * t;
+          const alpha = f.baseAlpha + ease * (0.95 - f.baseAlpha);
+          const width = 1 + ease * 1.6;
+
+          const ax = nx * linePos, ay = ny * linePos;
+          glowCtx.strokeStyle = hexToRgbString(hex, alpha);
+          glowCtx.lineWidth = width;
+          glowCtx.beginPath();
+          glowCtx.moveTo(ax - dx * half, ay - dy * half);
+          glowCtx.lineTo(ax + dx * half, ay + dy * half);
+          glowCtx.stroke();
+        }
+      });
+    }
+
+    function resize() {
+      w = window.innerWidth;
+      h = window.innerHeight;
+      dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      sizeCanvas(base, baseCtx);
+      sizeCanvas(glow, glowCtx);
       computeGeometry();
+      drawBase();
+      drawGlow();
     }
 
     readColors();
     resize();
+
+    if (reduceMotion) return; // static pattern only, no pointer tracking at all
 
     let resizeRaf = null;
     window.addEventListener("resize", () => {
@@ -219,97 +290,33 @@ document.addEventListener("DOMContentLoaded", function () {
       resizeRaf = requestAnimationFrame(resize);
     });
 
-    window.addEventListener("pointermove", (e) => {
-      pointer.x = e.clientX;
-      pointer.y = e.clientY;
-      pointer.active = true;
-    }, { passive: true });
-    window.addEventListener("pointerleave", () => { pointer.active = false; }, { passive: true });
-    window.addEventListener("pointerdown", (e) => {
-      pointer.x = e.clientX;
-      pointer.y = e.clientY;
-      pointer.active = true;
-    }, { passive: true });
-
-    document.addEventListener("visibilitychange", () => {
-      running = !document.hidden;
-      if (running && !reduceMotion) requestAnimationFrame(loop);
-    });
-
-    const mo = new MutationObserver(readColors);
-    mo.observe(root, { attributes: true, attributeFilter: ["data-theme"] });
-
-    function drawFamily(f, t) {
-      const { dx, dy, nx, ny, half, kStart, kEnd, baseColor, hex } = f;
-      const pn = pointer.active ? pointer.x * nx + pointer.y * ny : null;
-      const phase = t * 0.35 + f.phaseOffset;
-
-      ctx.beginPath();
-      const activeLines = [];
-
-      for (let k = kStart; k <= kEnd; k++) {
-        const wobble = Math.sin(phase + k * 0.35) * 1.4;
-        const linePos = k * SPACING + wobble;
-
-        let isActive = false;
-        if (pn !== null) {
-          const dist = Math.abs(pn - linePos);
-          if (dist < RADIUS) isActive = true;
-        }
-
-        const ax = nx * linePos, ay = ny * linePos;
-        const x1 = ax - dx * half, y1 = ay - dy * half;
-        const x2 = ax + dx * half, y2 = ay + dy * half;
-
-        if (isActive) {
-          activeLines.push({ x1, y1, x2, y2, pos: linePos });
-        } else {
-          ctx.moveTo(x1, y1);
-          ctx.lineTo(x2, y2);
-        }
-      }
-
-      ctx.strokeStyle = baseColor;
-      ctx.lineWidth = 1;
-      ctx.stroke();
-
-      activeLines.forEach(({ x1, y1, x2, y2, pos }) => {
-        const dist = Math.abs(pn - pos);
-        const t2 = 1 - dist / RADIUS;
-        const ease = t2 * t2;
-        const alpha = f.baseAlpha + ease * (0.95 - f.baseAlpha);
-        const width = 1 + ease * 1.6;
-
-        ctx.strokeStyle = hexToRgbString(hex, alpha);
-        ctx.lineWidth = width;
-        ctx.beginPath();
-        ctx.moveTo(x1, y1);
-        ctx.lineTo(x2, y2);
-        ctx.stroke();
+    let moveRaf = null;
+    function queueGlow(x, y, active) {
+      pointer.x = x;
+      pointer.y = y;
+      pointer.active = active;
+      if (moveRaf) return;
+      moveRaf = requestAnimationFrame(() => {
+        moveRaf = null;
+        drawGlow();
       });
     }
 
-    function render(t) {
-      ctx.clearRect(0, 0, w, h);
-      families.forEach((f) => drawFamily(f, t));
-    }
+    window.addEventListener("pointermove", (e) => queueGlow(e.clientX, e.clientY, true), { passive: true });
+    window.addEventListener("pointerdown", (e) => queueGlow(e.clientX, e.clientY, true), { passive: true });
+    window.addEventListener("pointerleave", () => queueGlow(pointer.x, pointer.y, false), { passive: true });
 
-    let start = null;
-    let lastFrameTime = 0;
-    function loop(ts) {
-      if (!running) return;
-      if (start === null) start = ts;
-      if (ts - lastFrameTime >= FRAME_INTERVAL) {
-        lastFrameTime = ts;
-        render((ts - start) / 1000);
-      }
-      requestAnimationFrame(loop);
-    }
+    const mo = new MutationObserver(() => {
+      readColors();
+      drawBase();
+      drawGlow();
+    });
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  }
 
-    if (reduceMotion) {
-      render(0);
-    } else {
-      requestAnimationFrame(loop);
-    }
+  if ("requestIdleCallback" in window) {
+    requestIdleCallback(initWeave, { timeout: 800 });
+  } else {
+    window.addEventListener("load", () => setTimeout(initWeave, 50));
   }
 });

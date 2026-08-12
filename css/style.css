@@ -88,16 +88,18 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-#bgWeave {
+#bgWeave,
+#bgWeaveGlow {
   position: fixed;
   inset: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -1;
   pointer-events: none;
   display: block;
   contain: strict;
 }
+#bgWeave { z-index: -2; }
+#bgWeaveGlow { z-index: -1; }
 
 img { max-width: 100%; display: block; }
 
