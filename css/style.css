@@ -1,13 +1,4 @@
-/* =========================================================
-   Safi Ahmed — Research Portfolio
-   Design language: indigo dye (textile heritage) + copper
-   (conductive yarn) — the two materials that meet in his work.
-   Signature: a hand-stitched thread line and a woven-twill
-   ground, plus a live "resistance readout" scroll bar.
-   ========================================================= */
-
 :root {
-  /* ---- Indigo + Copper palette (light / "raw canvas") ---- */
   --bg: #eef0f5;
   --bg-weave: #e5e8f0;
   --surface: #ffffff;
@@ -127,7 +118,6 @@ a:hover { color: var(--copper); }
 
 main { padding: 0 20px 80px; }
 
-/* ---- Scroll progress: a resistance-readout bar ---- */
 #scrollProgress {
   position: fixed;
   top: 0; left: 0;
@@ -139,7 +129,6 @@ main { padding: 0 20px 80px; }
   will-change: width;
 }
 
-/* ================= Header / Nav ================= */
 .site-header {
   position: sticky;
   top: 0;
@@ -248,7 +237,7 @@ main { padding: 0 20px 80px; }
   cursor: pointer;
 }
 
-/* ================= Shared section shell ================= */
+
 .section-shell {
   width: min(var(--max-width), 100%);
   margin: 26px auto 0;
@@ -267,7 +256,7 @@ main { padding: 0 20px 80px; }
 }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
-/* ================= Hero ================= */
+
 .hero { padding: 46px 40px; overflow: hidden; }
 
 .hero-grid {
@@ -415,7 +404,7 @@ h2 {
 }
 .hero-stat strong { font-family: var(--font-mono); color: var(--copper-deep); }
 
-/* ================= Content sections ================= */
+
 .content-section { padding: 34px 40px; }
 .section-heading { margin-bottom: 26px; }
 .section-kicker {
@@ -428,7 +417,7 @@ h2 {
   margin-bottom: 6px;
 }
 
-/* ================= Timeline (stitched seam) ================= */
+
 .timeline-list {
   position: relative;
   display: grid;
@@ -479,7 +468,7 @@ h2 {
 }
 .meta span:first-child { color: var(--ink-soft); font-family: var(--font-ui); font-weight: 600; }
 
-/* ================= Publications ================= */
+
 .pub-filters {
   display: flex;
   flex-wrap: wrap;
@@ -605,7 +594,7 @@ h2 {
 .contact-icon { width: 16px; height: 16px; flex-shrink: 0; color: inherit; opacity: 0.85; }
 .contact-loc { font-family: var(--font-mono); font-size: 0.85rem; }
 
-/* ================= Back to top ================= */
+
 #backToTop {
   position: fixed;
   right: 24px;

@@ -23,12 +23,12 @@ function scrollToTop() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  /* ===== Theme Toggle ===== */
+
   const toggleBtn = document.getElementById("themeToggle");
   const root = document.documentElement;
   const savedTheme = localStorage.getItem("theme");
 
-  // Night Mode is the default
+
   root.setAttribute("data-theme", savedTheme || "dark");
 
   if (toggleBtn) {
@@ -40,15 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  /* =====================================================
-     One rAF-coalesced scroll pass. Instead of three
-     independent "scroll" listeners each doing their own
-     work (and their own layout reads) on every fired
-     event — which is what was making fast trackpad
-     scrolling feel janky — a single passive listener just
-     flags "dirty" and a single rAF tick does all three
-     updates together, at most once per frame.
-     ===================================================== */
   const progressBar = document.getElementById("scrollProgress");
   const backToTop = document.getElementById("backToTop");
   const navLinks = document.querySelectorAll("[data-nav]");
@@ -90,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("scroll", onScroll, { passive: true });
   updateOnScroll();
 
-  /* ===== Scroll-reveal for sections ===== */
+  
   const revealEls = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window && revealEls.length) {
     const io = new IntersectionObserver((entries) => {
@@ -106,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
     revealEls.forEach((el) => el.classList.add("is-visible"));
   }
 
-  /* ===== Publication filters ===== */
+
   const filterButtons = document.querySelectorAll(".pub-filter");
   const pubCards = document.querySelectorAll(".publication-card");
 
@@ -124,30 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  /* =====================================================
-     Dynamic weave background — event-driven, not animated.
-
-     Earlier version ran a continuous 30fps requestAnimationFrame
-     loop redrawing the *entire* viewport every frame, all the
-     time, even when nobody was moving the mouse. That constant
-     full-canvas clear+redraw is what caused load-time / idle
-     jank, especially on integrated GPUs.
-
-     This version splits the effect into two layers and does
-     real work only when something actually changes:
-
-     - #bgWeave (base): the quiet indigo/copper thread grid.
-       Drawn ONCE (on load, resize, or theme change) and then
-       left alone — zero cost while the page just sits there.
-     - #bgWeaveGlow (overlay): fully transparent, only holds the
-       handful of lines currently glowing near the cursor. It's
-       only touched on pointer movement (rAF-throttled to at
-       most once per frame) and cleared on pointerleave. No
-       mouse movement -> no redraws -> no idle GPU/CPU cost.
-
-     Deferred with requestIdleCallback so the very first paint
-     of the page (fonts, hero, images) isn't competing with this.
-     ===================================================== */
+ 
   function initWeave() {
     const base = document.getElementById("bgWeave");
     const glow = document.getElementById("bgWeaveGlow");
@@ -212,9 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
 
-    // Base layer: drawn once per resize/theme change. A tiny
-    // deterministic per-line jitter gives an organic, hand-woven
-    // feel without needing any per-frame animation to produce it.
+   
     function drawBase() {
       baseCtx.clearRect(0, 0, w, h);
       families.forEach((f) => {
@@ -233,9 +199,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    // Glow layer: only the lines within RADIUS of the pointer,
-    // recomputed by scanning a tiny local k-range per family
-    // instead of the whole grid.
     function drawGlow() {
       glowCtx.clearRect(0, 0, w, h);
       if (!pointer.active) return;
