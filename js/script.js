@@ -26,17 +26,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const toggleBtn = document.getElementById("themeToggle");
   const root = document.documentElement;
-  const savedTheme = localStorage.getItem("theme");
+  let savedTheme = null;
+  try { savedTheme = localStorage.getItem("theme"); } catch (_) {}
 
 
-  root.setAttribute("data-theme", savedTheme || "dark");
+  root.setAttribute("data-theme", savedTheme === "light" ? "light" : "dark");
 
   if (toggleBtn) {
     toggleBtn.addEventListener("click", function () {
       const currentTheme = root.getAttribute("data-theme");
       const next = currentTheme === "dark" ? "light" : "dark";
       root.setAttribute("data-theme", next);
-      localStorage.setItem("theme", next);
+      try { localStorage.setItem("theme", next); } catch (_) {}
     });
   }
 
@@ -80,23 +81,10 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   window.addEventListener("scroll", onScroll, { passive: true });
   updateOnScroll();
+  window.addEventListener("load", onScroll, { once: true });
 
   
-  const revealEls = document.querySelectorAll(".reveal");
-  if ("IntersectionObserver" in window && revealEls.length) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: "0px 0px -60px 0px" });
-    revealEls.forEach((el) => io.observe(el));
-  } else {
-    revealEls.forEach((el) => el.classList.add("is-visible"));
-  }
-
+  // Content is visible by default; no IntersectionObserver required.
 
   const filterButtons = document.querySelectorAll(".pub-filter");
   const pubCards = document.querySelectorAll(".publication-card");
@@ -117,13 +105,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
  
   function initWeave() {
+    if (window.matchMedia("(max-width: 900px), (hover: none) and (pointer: coarse), (prefers-reduced-motion: reduce)").matches) return;
     const base = document.getElementById("bgWeave");
     const glow = document.getElementById("bgWeaveGlow");
     if (!base || !glow) return;
 
     const baseCtx = base.getContext("2d", { alpha: true });
     const glowCtx = glow.getContext("2d", { alpha: true });
-    const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!baseCtx || !glowCtx) return;
     const SPACING = 38;
     const RADIUS = 190;
 
@@ -234,7 +223,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function resize() {
       w = window.innerWidth;
       h = window.innerHeight;
-      dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      dpr = Math.min(window.devicePixelRatio || 1, 1.25);
       sizeCanvas(base, baseCtx);
       sizeCanvas(glow, glowCtx);
       computeGeometry();
@@ -245,7 +234,7 @@ document.addEventListener("DOMContentLoaded", function () {
     readColors();
     resize();
 
-    if (reduceMotion) return; // static pattern only, no pointer tracking at all
+    // Canvas is disabled entirely for reduced-motion and touch devices.
 
     let resizeRaf = null;
     window.addEventListener("resize", () => {
@@ -265,9 +254,13 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    window.addEventListener("pointermove", (e) => queueGlow(e.clientX, e.clientY, true), { passive: true });
-    window.addEventListener("pointerdown", (e) => queueGlow(e.clientX, e.clientY, true), { passive: true });
-    window.addEventListener("pointerleave", () => queueGlow(pointer.x, pointer.y, false), { passive: true });
+    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      window.addEventListener("pointermove", (e) => queueGlow(e.clientX, e.clientY, true), { passive: true });
+      window.addEventListener("pointerdown", (e) => queueGlow(e.clientX, e.clientY, true), { passive: true });
+      window.addEventListener("pointerleave", () => queueGlow(pointer.x, pointer.y, false), { passive: true });
+    }
+
+    window.addEventListener("blur", () => queueGlow(pointer.x, pointer.y, false));
 
     const mo = new MutationObserver(() => {
       readColors();
@@ -280,6 +273,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if ("requestIdleCallback" in window) {
     requestIdleCallback(initWeave, { timeout: 800 });
   } else {
-    window.addEventListener("load", () => setTimeout(initWeave, 50));
+    if (document.readyState === "complete") setTimeout(initWeave, 50);
+    else window.addEventListener("load", () => setTimeout(initWeave, 50), { once: true });
   }
 });

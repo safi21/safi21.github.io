@@ -2,6 +2,13 @@
 <html lang="en">
 
 <head>
+  <script>
+    try {
+      document.documentElement.dataset.theme = localStorage.getItem('theme') === 'light' ? 'light' : 'dark';
+    } catch (_) {
+      document.documentElement.dataset.theme = 'dark';
+    }
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Safi Ahmed — smart textiles, wearable sensors and flexible electronics researcher at Kwangwoon University." />
@@ -240,7 +247,7 @@
       <div class="publications-grid">
 
         <article class="publication-card" data-tags="sensors bioelectronics wearables">
-          <div class="pub-media"><img src="images/Shofiul_2.png" alt="Figure from the triboelectric tactile sensor manuscript" loading="lazy" width="220" height="140" /></div>
+          <div class="pub-media"><img src="images/Shofiul_2.png" alt="Figure from the triboelectric tactile sensor manuscript" loading="lazy" decoding="async" width="220" height="140" /></div>
           <div>
             <div class="pub-tags"><span class="pub-tag">Sensors</span><span class="pub-tag">TENG</span><span class="pub-tag">HCI</span></div>
             <h3>Nanofibrous Heterostructured Triboelectric Nanogenerators for Self-Powered Sensing</h3>
@@ -252,7 +259,7 @@
         </article>
 
         <article class="publication-card" data-tags="sensors bioelectronics wearables">
-          <div class="pub-media"><img src="images/Robiul_2_et_al.png" alt="Figure from the triboelectric tactile sensor manuscript" loading="lazy" width="220" height="140" /></div>
+          <div class="pub-media"><img src="images/Robiul_2_et_al.png" alt="Figure from the triboelectric tactile sensor manuscript" loading="lazy" decoding="async" width="220" height="140" /></div>
           <div>
             <div class="pub-tags"><span class="pub-tag">Sensors</span><span class="pub-tag">TENG</span></div>
             <h3>Superhydrophobic Triboelectric Tactile Sensor for Human-Machine Interaction</h3>
@@ -264,7 +271,7 @@
         </article>
 
         <article class="publication-card" data-tags="sensors wearables bioelectronics">
-          <div class="pub-media"><img src="images/SeungJae_et_al.png" alt="Figure from the MXene breathable patch manuscript" loading="lazy" width="220" height="140" /></div>
+          <div class="pub-media"><img src="images/SeungJae_et_al.png" alt="Figure from the MXene breathable patch manuscript" loading="lazy" decoding="async" width="220" height="140" /></div>
           <div>
             <div class="pub-tags"><span class="pub-tag">Sensors</span><span class="pub-tag">Wearables</span></div>
             <h3>MXene-composite-based Multifunctional Breathable Patch for Activity Monitoring</h3>
@@ -276,7 +283,7 @@
         </article>
 
         <article class="publication-card" data-tags="bioelectronics sensors">
-          <div class="pub-media"><img src="images/Selim_et_al.png" alt="Figure from the strain-adaptive nanocomposite manuscript" loading="lazy" width="220" height="140" /></div>
+          <div class="pub-media"><img src="images/Selim_et_al.png" alt="Figure from the strain-adaptive nanocomposite manuscript" loading="lazy" decoding="async" width="220" height="140" /></div>
           <div>
             <div class="pub-tags"><span class="pub-tag">Bioelectronics</span><span class="pub-tag">Sweat Sensing</span></div>
             <h3>Polyethylene Glycol-functionalized and Conductive Polymer-Carbon Nanotube, Strain-adaptive Nanocomposite for Epidermal Bioelectronics</h3>
@@ -289,7 +296,7 @@
         </article>
 
         <article class="publication-card" data-tags="bioelectronics sensors wearables">
-          <div class="pub-media"><img src="images/Zahid_et_al.png" alt="Figure from the MOF-derived nanohybrid patch paper" loading="lazy" width="220" height="140" /></div>
+          <div class="pub-media"><img src="images/Zahid_et_al.png" alt="Figure from the MOF-derived nanohybrid patch paper" loading="lazy" decoding="async" width="220" height="140" /></div>
           <div>
             <div class="pub-tags"><span class="pub-tag">Bioelectronics</span><span class="pub-tag">Sweat Sensing</span></div>
             <h3>MOF-Derived Transition Metal Carbide@Electroactive Polypyrrole Nanohybrid-Based High-Performance and Stretchable Multimodal Patch for Perspiration Analysis</h3>
@@ -302,7 +309,7 @@
         </article>
 
         <article class="publication-card" data-tags="hci wearables sensors">
-          <div class="pub-media"><img src="images/HCI_TENG.png" alt="Figure from the triboelectric HCI sensor paper" loading="lazy" width="220" height="140" /></div>
+          <div class="pub-media"><img src="images/HCI_TENG.png" alt="Figure from the triboelectric HCI sensor paper" loading="lazy" decoding="async" width="220" height="140" /></div>
           <div>
             <div class="pub-tags"><span class="pub-tag">HCI</span><span class="pub-tag">Wearables</span><span class="pub-tag">TENG</span></div>
             <h3>Bifunctional Silicone@NENU-5 Nanocomposite-based Wearable Serpi-gami Triboelectric Sensor for Human-Computer Interaction</h3>
@@ -315,7 +322,7 @@
         </article>
 
         <article class="publication-card" data-tags="hci sensors">
-          <div class="pub-media"><img src="images/Paper_5.png" alt="Figure from the hydrogel hand-gesture poster" loading="lazy" width="220" height="140" /></div>
+          <div class="pub-media"><img src="images/Paper_5.png" alt="Figure from the hydrogel hand-gesture poster" loading="lazy" decoding="async" width="220" height="140" /></div>
           <div>
             <div class="pub-tags"><span class="pub-tag">HCI</span><span class="pub-tag">Hydrogel</span></div>
             <h3>Highly Stretchable Conductive Hydrogel for Hand Gesture Recognition and Human-Computer Interaction</h3>
@@ -329,7 +336,7 @@
         </article>
 
         <article class="publication-card" data-tags="textiles sensors">
-          <div class="pub-media"><img src="images/Paper_1.png" alt="Figure from the knitted resistive strain sensor paper" loading="lazy" width="220" height="140" /></div>
+          <div class="pub-media"><img src="images/Paper_1.png" alt="Figure from the knitted resistive strain sensor paper" loading="lazy" decoding="async" width="220" height="140" /></div>
           <div>
             <div class="pub-tags"><span class="pub-tag">Textiles</span><span class="pub-tag">Sensors</span></div>
             <h3>Digital Machine Knitted Resistive Strain Sensor for Wireless Human Motion Monitoring</h3>
@@ -342,7 +349,7 @@
         </article>
 
         <article class="publication-card" data-tags="textiles">
-          <div class="pub-media"><img src="images/Paper_2.png" alt="Figure from the sustainable knitting book chapter" loading="lazy" width="220" height="140" /></div>
+          <div class="pub-media"><img src="images/Paper_2.png" alt="Figure from the sustainable knitting book chapter" loading="lazy" decoding="async" width="220" height="140" /></div>
           <div>
             <div class="pub-tags"><span class="pub-tag">Textiles</span><span class="pub-tag">Sustainability</span></div>
             <h3>Advanced Knitting Technology for Sustainable Fashion</h3>
@@ -355,7 +362,7 @@
         </article>
 
         <article class="publication-card" data-tags="textiles sensors hci">
-          <div class="pub-media"><img src="images/Paper_3.png" alt="Figure from the knitted touch sensing textiles paper" loading="lazy" width="220" height="140" /></div>
+          <div class="pub-media"><img src="images/Paper_3.png" alt="Figure from the knitted touch sensing textiles paper" loading="lazy" decoding="async" width="220" height="140" /></div>
           <div>
             <div class="pub-tags"><span class="pub-tag">Textiles</span><span class="pub-tag">HCI</span></div>
             <h3>Seamless Integration of Touch Sensing Smart Textiles through Computerized Machine Knitting</h3>
@@ -368,7 +375,7 @@
         </article>
 
         <article class="publication-card" data-tags="textiles sensors">
-          <div class="pub-media"><img src="images/Paper_4.png" alt="Figure from the knitted resistive pressure sensor paper" loading="lazy" width="220" height="140" /></div>
+          <div class="pub-media"><img src="images/Paper_4.png" alt="Figure from the knitted resistive pressure sensor paper" loading="lazy" decoding="async" width="220" height="140" /></div>
           <div>
             <div class="pub-tags"><span class="pub-tag">Textiles</span><span class="pub-tag">Sensors</span></div>
             <h3>Easily scalable and highly flexible machine knitted resistive pressure sensor for smart textile applications</h3>

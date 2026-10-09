@@ -648,3 +648,20 @@ h2 {
   .hero-content p, .text-block p, .timeline-item p, .publication-card p { text-align: left; }
   .hero-content p, .text-block p { text-align: justify; text-justify: inter-word; }
 }
+
+/* Essential content stays visible even without JavaScript. */
+.reveal, .reveal.is-visible { opacity: 1; transform: none; transition: none; }
+section[id] { scroll-margin-top: 95px; }
+
+/* QA: Reduce painting and rasterization work on mobile devices. */
+@media (max-width: 900px), (hover: none) and (pointer: coarse), (prefers-reduced-motion: reduce) {
+  #bgWeave, #bgWeaveGlow { display: none !important; }
+  .site-header { backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .publication-card, .publication-card img { transition: none; }
+  .publication-card:hover { transform: none; }
+  .publication-card:hover img { transform: none; }
+  .pub-media img { width: 100%; height: auto; object-fit: contain; }
+}
+
+/* Prevent full-length canvas work on devices with coarse pointer. */
+@media (hover: none) and (pointer: coarse) { .publication-card:hover { transform: none; } }
